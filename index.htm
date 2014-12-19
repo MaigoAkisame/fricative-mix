@@ -1,0 +1,80 @@
+<title>Mixture of Unvoiced Fricatives</title>
+
+<p align=center><table><tr>
+  <td width=43% valign=top>
+    <h1 align=center>清擦音混合实验</h1>
+    <p>　　这个实验研究的是，如果把两个不同的清擦音“混合”，听起来会是什么感觉。本实验考虑以下四个清擦音：f /f/, s /s/, sh /&#643;/, th /&theta;/。“混合”的步骤如下：</p>
+    <ol>
+      <li>将两个待混合清擦音的能量分别归一化；
+      <li>求两个清擦音的语谱图，舍弃相位，只保留幅度；
+      <li>将两个语谱图分别沿时间轴伸缩，使它们的长度均变成0.5秒；
+      <li>将两个语谱图相加后除以2，作为混合音的语谱图的幅度；
+      <li>采用随机相位，合成混合音。
+    </ol>
+    <p>　　我原以为将两个音混合后，听起来会是“四不像”。结果却发现，有时混合音会听起来更像其中一个音，仿佛这个音把另一个音“屏蔽”掉了。具体地说：</p>
+    <ul>
+      <li>f、th会屏蔽掉sh；
+      <li>sh会屏蔽掉s；
+      <li>如果你根据上面两条认为f、th会屏蔽掉s，那就错了！f或th与s混合时，互相屏蔽不了对方，你想听到哪一个音，就能听到哪一个音；
+      <li>f和th本身听感就相近，混合后听感也差不多。
+    </ul>
+    <p>　　下面的表展示了每一对清擦音混合后的语谱图（频率范围：0 ~ 8 kHz），点击语谱图下面的播放器可以听到混合音。作为对照，我也对每个音进行了自身混合，相当于对它进行能量归一化、时长伸缩，并用随机相位重新合成。</p>
+  </td>
+  <td width=2%></td>
+  <td width=55% valign=top>
+    <h1 align=center>Mixture of Unvoiced Fricatives</h1>
+    <p>&nbsp This experiments studies what the "mixture" of two unvoiced fricatives would sound like. Four unvoiced fricatives are considered: f /f/, s /s/, sh /&#643;/, th /&theta;/. The mixing is performed in the following steps:</p>
+    <ol>
+      <li>Normalize the power of the two fricatives to be mixed respectively;
+      <li>Compute the spectrograms of the two fricatives, then discard the phase, retaining only the magnitude;
+      <li>Stretch the two spectrograms along the time axis, so their lengths become 0.5 seconds;
+      <li>Add up the two spectrograms and divide it by two to yield the magnitude spectrogram of the mixture;
+      <li>Synthesize the mixture using random phase.
+    </ol>
+    <p>&nbsp I thought the mixture of two unvoiced fricatives would sound like neither. But it turns out that sometimes the mixture sounds more like one of the two constituents, as if it has "masked out" the other. More precisely,</p>
+    <ul>
+      <li>"f" and "th" mask out "sh";
+      <li>"sh" masks out "s";
+      <li>If you then think "f" and "th" will mask out "s", you're wrong! When "f" or "th" is mixed with "s", neither masks out the other, and you can hear whichever sound you want to hear;
+      <li>"f" and "th" sound alike already, so their mixture also sounds the same.
+    </ul>
+    <p>&nbsp The table below displays the spectrogram of the mixture of each pair of unvoiced fricatives (with the frequency ranging from 0 to 8 kHz), and you can listen to the mixtures by clicking on the players below the spectrograms. For comparison, I mixed each fricative with itself as well, which is equivalent to normalizing its power, stretching it along the time axis, and then resynthesizing it with random phase.</p>
+  </td>
+</tr></table></p>
+
+<p align=center><table border=1>
+  <script>
+function player(url)
+{
+  a = "<object type=application/x-shockwave-flash data=\"dewplayer-mini.swf?mp3=" + url + ".mp3\" height=20 width=160>";    // for Firefox
+  b = "<param name=movie value=\"dewplayer-mini.swf?mp3=" + url + ".mp3\">";    // for IE
+  c = "</object>"
+  return a + b + c;
+}
+
+    var consonants = ["f", "s", "sh", "th"];
+    var N = consonants.length;
+
+    document.write("<tr><td></td>");
+    for (var i = 0; i < N; i++) {
+      document.write("<th>" + consonants[i] + "</th>");
+    }
+    document.write("</tr>");
+
+    for (var i = 0; i < N; i++) {
+      document.write("<tr><th>" + consonants[i] + "</th>");
+      for (var j = 0; j < N; j++) {
+        document.write("<td align=center>");
+        if (j >= i) {
+          var id = consonants[i] + "%2B" + consonants[j];
+          document.write("<img src=spectrogram/" + id + ".png width=200><br>");
+          document.write("<object type=application/x-shockwave-flash data=\"dewplayer-mini.swf?mp3=audio/output-mp3/" + id + ".mp3\" height=20 width=160>");    // for Firefox
+          document.write("<param name=movie value=\"dewplayer-mini.swf?mp3=audio/output-mp3/" + id + ".mp3\">");
+          document.write("</object>");
+        }
+        document.write("</td>");
+      }
+      document.write("</tr>");
+    }
+  </script>
+</table></p>
